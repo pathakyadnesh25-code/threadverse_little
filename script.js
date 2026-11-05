@@ -55,6 +55,17 @@ document.addEventListener("DOMContentLoaded", function () {
   const cards = Array.from(
     grid.querySelectorAll(".shop-product-card")
   );
+  // Open individual product details
+cards.forEach(function (card) {
+  card.style.cursor = "pointer";
+
+  card.addEventListener("click", function () {
+    const productName = card.dataset.name;
+
+    window.location.href =
+      "product.html?name=" + encodeURIComponent(productName);
+  });
+});
 
   const search = document.getElementById("productSearch");
   const sort = document.getElementById("sortProducts");
