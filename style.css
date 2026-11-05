@@ -1796,3 +1796,7 @@ a {
     gap: 18px;
   }
 }
+/* Make hidden checkout sections stay hidden */
+.checkout-page [hidden] {
+  display: none !important;
+}
