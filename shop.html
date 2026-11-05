@@ -1,0 +1,298 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop Baby Clothes | THREADVERSE LITTLE</title>
+  <meta name="description" content="Explore newborn and infant clothing at THREADVERSE LITTLE.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="shop-page">
+
+  <div class="announcement">
+    Welcome to THREADVERSE LITTLE — Little Clothes. Big Love.
+  </div>
+
+  <header class="header">
+    <a class="logo" href="index.html">
+      THREADVERSE <span>LITTLE</span>
+    </a>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Open menu">☰</button>
+
+    <nav class="navigation" id="navigation">
+      <a href="index.html">Home</a>
+      <a href="shop.html" class="active-link">Shop</a>
+      <a href="index.html#collections">Collections</a>
+      <a href="index.html#about">Our Story</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+
+    <a href="#catalog" class="header-shop">Explore Shop</a>
+  </header>
+
+  <main>
+    <section class="shop-hero">
+      <p class="eyebrow">THE LITTLE COLLECTION</p>
+      <h1>Lovely Clothes for <span>Little Ones.</span></h1>
+      <p>Discover thoughtful styles for every little milestone.</p>
+      <div class="shop-breadcrumb">
+        <a href="index.html">Home</a> / Shop
+      </div>
+    </section>
+
+    <section class="shop-main" id="catalog">
+
+      <div class="shop-heading">
+        <div>
+          <p class="eyebrow">EXPLORE OUR COLLECTION</p>
+          <h2>Shop Baby Clothing</h2>
+          <p class="shop-subtitle">Find something lovely for your little one.</p>
+        </div>
+        <p class="result-count" id="resultCount">8 products</p>
+      </div>
+
+      <div class="shop-toolbar">
+        <div class="search-box">
+          <span>⌕</span>
+          <input type="search" id="productSearch"
+            placeholder="Search baby clothes...">
+        </div>
+
+        <select id="sortProducts" aria-label="Sort products">
+          <option value="featured">Sort: Featured</option>
+          <option value="low">Price: Low to High</option>
+          <option value="high">Price: High to Low</option>
+          <option value="name">Name: A to Z</option>
+        </select>
+      </div>
+
+      <div class="shop-layout">
+
+        <aside class="shop-filters">
+          <div class="filter-heading">
+            <h3>Filters</h3>
+            <button type="button" id="clearFilters">Clear all</button>
+          </div>
+
+          <div class="filter-group">
+            <h4>Shop by Age</h4>
+            <label><input type="radio" name="age" value="all" checked> All Ages</label>
+            <label><input type="radio" name="age" value="newborn"> Newborn (0–3 Months)</label>
+            <label><input type="radio" name="age" value="infant"> Infant (3–12 Months)</label>
+          </div>
+
+          <div class="filter-group">
+            <h4>Shop by Gender</h4>
+            <label><input type="radio" name="gender" value="all" checked> All</label>
+            <label><input type="radio" name="gender" value="boys"> Boys</label>
+            <label><input type="radio" name="gender" value="girls"> Girls</label>
+            <label><input type="radio" name="gender" value="unisex"> Unisex</label>
+          </div>
+
+          <div class="filter-group">
+            <h4>Clothing Type</h4>
+            <label><input type="radio" name="type" value="all" checked> All Types</label>
+            <label><input type="radio" name="type" value="rompers"> Rompers</label>
+            <label><input type="radio" name="type" value="sets"> Clothing Sets</label>
+            <label><input type="radio" name="type" value="nightwear"> Nightwear</label>
+            <label><input type="radio" name="type" value="bodysuits"> Bodysuits</label>
+          </div>
+
+          <div class="filter-note">
+            <span>♡</span>
+            <p>Little styles, selected with love.</p>
+          </div>
+        </aside>
+
+        <div class="shop-products">
+          <div class="active-filters" id="activeFilters"></div>
+
+          <div class="shop-product-grid" id="shopProductGrid">
+
+            <article class="shop-product-card"
+              data-name="Little Cloud Romper"
+              data-age="newborn"
+              data-gender="unisex"
+              data-type="rompers"
+              data-price="399">
+              <div class="shop-product-image">
+                <img src="https://images.unsplash.com/photo-1622290319146-7b63df48a635?auto=format&fit=crop&w=700&q=85" alt="Newborn baby clothing">
+                <span class="shop-tag">NEWBORN</span>
+              </div>
+              <div class="shop-product-info">
+                <p>0–3 Months · Unisex</p>
+                <h3>Little Cloud Romper</h3>
+                <div class="shop-price">₹399 <span>Sample price</span></div>
+              </div>
+            </article>
+
+            <article class="shop-product-card"
+              data-name="Everyday Baby Set"
+              data-age="infant"
+              data-gender="boys"
+              data-type="sets"
+              data-price="599">
+              <div class="shop-product-image">
+                <img src="https://images.unsplash.com/photo-1777397660834-67c6d0eabe15?auto=format&fit=crop&w=700&q=85" alt="Baby clothing collection">
+                <span class="shop-tag">INFANT</span>
+              </div>
+              <div class="shop-product-info">
+                <p>3–12 Months · Boys</p>
+                <h3>Everyday Baby Set</h3>
+                <div class="shop-price">₹599 <span>Sample price</span></div>
+              </div>
+            </article>
+
+            <article class="shop-product-card"
+              data-name="Dreamy Nightwear"
+              data-age="newborn"
+              data-gender="girls"
+              data-type="nightwear"
+              data-price="499">
+              <div class="shop-product-image">
+                <img src="https://images.unsplash.com/photo-1766918780914-5df4a5a98c44?auto=format&fit=crop&w=700&q=85" alt="Baby clothing on a rack">
+                <span class="shop-tag">NEWBORN</span>
+              </div>
+              <div class="shop-product-info">
+                <p>0–3 Months · Girls</p>
+                <h3>Dreamy Nightwear</h3>
+                <div class="shop-price">₹499 <span>Sample price</span></div>
+              </div>
+            </article>
+
+            <article class="shop-product-card"
+              data-name="Tiny Sunshine Bodysuit"
+              data-age="infant"
+              data-gender="unisex"
+              data-type="bodysuits"
+              data-price="349">
+              <div class="shop-product-image">
+                <img src="https://images.unsplash.com/photo-1622290319146-7b63df48a635?auto=format&fit=crop&w=700&q=85" alt="Baby bodysuit">
+                <span class="shop-tag">POPULAR</span>
+              </div>
+              <div class="shop-product-info">
+                <p>3–12 Months · Unisex</p>
+                <h3>Tiny Sunshine Bodysuit</h3>
+                <div class="shop-price">₹349 <span>Sample price</span></div>
+              </div>
+            </article>
+
+            <article class="shop-product-card"
+              data-name="Little Blossom Set"
+              data-age="newborn"
+              data-gender="girls"
+              data-type="sets"
+              data-price="649">
+              <div class="shop-product-image">
+                <img src="https://images.unsplash.com/photo-1777397660834-67c6d0eabe15?auto=format&fit=crop&w=700&q=85" alt="Baby clothing set">
+                <span class="shop-tag">NEWBORN</span>
+              </div>
+              <div class="shop-product-info">
+                <p>0–3 Months · Girls</p>
+                <h3>Little Blossom Set</h3>
+                <div class="shop-price">₹649 <span>Sample price</span></div>
+              </div>
+            </article>
+
+            <article class="shop-product-card"
+              data-name="Cozy Little Romper"
+              data-age="infant"
+              data-gender="boys"
+              data-type="rompers"
+              data-price="449">
+              <div class="shop-product-image">
+                <img src="https://images.unsplash.com/photo-1766918780914-5df4a5a98c44?auto=format&fit=crop&w=700&q=85" alt="Infant clothing">
+                <span class="shop-tag">INFANT</span>
+              </div>
+              <div class="shop-product-info">
+                <p>3–12 Months · Boys</p>
+                <h3>Cozy Little Romper</h3>
+                <div class="shop-price">₹449 <span>Sample price</span></div>
+              </div>
+            </article>
+
+            <article class="shop-product-card"
+              data-name="Soft Cloud Bodysuit"
+              data-age="newborn"
+              data-gender="unisex"
+              data-type="bodysuits"
+              data-price="329">
+              <div class="shop-product-image">
+                <img src="https://images.unsplash.com/photo-1622290319146-7b63df48a635?auto=format&fit=crop&w=700&q=85" alt="Newborn bodysuit">
+                <span class="shop-tag">NEWBORN</span>
+              </div>
+              <div class="shop-product-info">
+                <p>0–3 Months · Unisex</p>
+                <h3>Soft Cloud Bodysuit</h3>
+                <div class="shop-price">₹329 <span>Sample price</span></div>
+              </div>
+            </article>
+
+            <article class="shop-product-card"
+              data-name="Little Star Night Suit"
+              data-age="infant"
+              data-gender="girls"
+              data-type="nightwear"
+              data-price="549">
+              <div class="shop-product-image">
+                <img src="https://images.unsplash.com/photo-1777397660834-67c6d0eabe15?auto=format&fit=crop&w=700&q=85" alt="Infant nightwear">
+                <span class="shop-tag">INFANT</span>
+              </div>
+              <div class="shop-product-info">
+                <p>3–12 Months · Girls</p>
+                <h3>Little Star Night Suit</h3>
+                <div class="shop-price">₹549 <span>Sample price</span></div>
+              </div>
+            </article>
+
+          </div>
+
+          <div class="no-products" id="noProducts" hidden>
+            <h3>No little finds found!</h3>
+            <p>Try changing your search or filters.</p>
+            <button type="button" id="resetNoProducts">Clear filters</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="shop-bottom">
+      <p class="eyebrow">A WORLD OF LITTLE COMFORTS</p>
+      <h2>Every little moment deserves something special.</h2>
+      <a href="index.html" class="primary-button">Back to Home</a>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-main">
+      <div>
+        <a class="logo footer-logo" href="index.html">
+          THREADVERSE <span>LITTLE</span>
+        </a>
+        <p>Little Clothes. Big Love.</p>
+      </div>
+      <div>
+        <h3>Explore</h3>
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="index.html#about">Our Story</a>
+      </div>
+      <div>
+        <h3>Information</h3>
+        <a href="index.html#contact">Contact Us</a>
+        <a href="index.html#contact">Shipping Information</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © <span id="currentYear"></span> THREADVERSE LITTLE. All rights reserved.
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
