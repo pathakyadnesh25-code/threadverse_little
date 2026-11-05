@@ -2,7 +2,51 @@
 document.addEventListener("DOMContentLoaded", function () {
 
   // ==========================================
-  // 1. MOBILE NAVIGATION
+  // 1. COMMON WEBSITE FUNCTIONS
+  // ==========================================
+
+  const CART_KEY = "threadverseLittleCart";
+  const DEMO_ORDERS_KEY = "threadverseLittleDemoOrders";
+
+  function getCart() {
+    try {
+      const cart = JSON.parse(localStorage.getItem(CART_KEY) || "[]");
+      return Array.isArray(cart) ? cart : [];
+    } catch (error) {
+      console.error("Unable to read cart:", error);
+      return [];
+    }
+  }
+
+  function saveCart(cart) {
+    try {
+      localStorage.setItem(CART_KEY, JSON.stringify(cart));
+      updateCartCount();
+    } catch (error) {
+      alert("Unable to save your cart. Please check your browser storage.");
+    }
+  }
+
+  function money(amount) {
+    return "₹" + Number(amount || 0).toLocaleString("en-IN");
+  }
+
+  function updateCartCount() {
+    const countElement = document.getElementById("headerCartCount");
+    if (!countElement) return;
+
+    const total = getCart().reduce(function (sum, item) {
+      return sum + (Number(item.quantity) || 0);
+    }, 0);
+
+    countElement.textContent = total;
+  }
+
+  updateCartCount();
+
+
+  // ==========================================
+  // 2. MOBILE NAVIGATION
   // ==========================================
 
   const menuToggle = document.getElementById("menuToggle");
@@ -20,8 +64,9 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+
   // ==========================================
-  // 2. COPYRIGHT YEAR
+  // 3. COPYRIGHT YEAR
   // ==========================================
 
   const currentYear = document.getElementById("currentYear");
@@ -30,8 +75,9 @@ document.addEventListener("DOMContentLoaded", function () {
     currentYear.textContent = new Date().getFullYear();
   }
 
+
   // ==========================================
-  // 3. NEWSLETTER DEMO
+  // 4. NEWSLETTER DEMO
   // ==========================================
 
   const newsletterForm = document.getElementById("newsletterForm");
@@ -42,23 +88,27 @@ document.addEventListener("DOMContentLoaded", function () {
     newsletterForm.addEventListener("submit", function (event) {
       event.preventDefault();
 
-      if (emailInput && emailInput.value.trim() !== "") {
-        if (newsletterMessage) {
-          newsletterMessage.textContent =
-            "Thank you for your interest in THREADVERSE LITTLE!";
-        }
-
-        emailInput.value = "";
+      if (!emailInput || !emailInput.value.trim()) {
+        return;
       }
+
+      if (newsletterMessage) {
+        newsletterMessage.textContent =
+          "Thank you for your interest in THREADVERSE LITTLE!";
+      }
+
+      emailInput.value = "";
     });
   }
 
+
   // ==========================================
-  // 4. PRODUCT DATA
+  // 5. PRODUCT DATA
   // ==========================================
 
-  // Temporary demonstration image.
-  // Replace these with your actual product photographs later.
+  // These are demonstration products and images.
+  // Replace them with your actual product details before launch.
+
   const sampleImage =
     "https://images.unsplash.com/photo-1622290319146-7b63df48a635?auto=format&fit=crop&w=1000&q=85";
 
@@ -70,7 +120,8 @@ document.addEventListener("DOMContentLoaded", function () {
       gender: "Unisex",
       type: "Rompers",
       image: sampleImage,
-      description: "A lovely sample romper style for your baby's everyday wardrobe."
+      description:
+        "A lovely sample romper style for your baby's everyday wardrobe."
     },
 
     "Everyday Baby Set": {
@@ -80,7 +131,8 @@ document.addEventListener("DOMContentLoaded", function () {
       gender: "Boys",
       type: "Clothing Sets",
       image: sampleImage,
-      description: "A sample clothing set selected for your little one's everyday looks."
+      description:
+        "A sample clothing set selected for your little one's everyday looks."
     },
 
     "Dreamy Nightwear": {
@@ -90,7 +142,8 @@ document.addEventListener("DOMContentLoaded", function () {
       gender: "Girls",
       type: "Nightwear",
       image: sampleImage,
-      description: "A sample nightwear style for your baby's clothing collection."
+      description:
+        "A sample nightwear style for your baby's clothing collection."
     },
 
     "Tiny Sunshine Bodysuit": {
@@ -100,7 +153,8 @@ document.addEventListener("DOMContentLoaded", function () {
       gender: "Unisex",
       type: "Bodysuits",
       image: sampleImage,
-      description: "A sample bodysuit style for little everyday adventures."
+      description:
+        "A sample bodysuit style for little everyday adventures."
     },
 
     "Little Blossom Set": {
@@ -110,7 +164,8 @@ document.addEventListener("DOMContentLoaded", function () {
       gender: "Girls",
       type: "Clothing Sets",
       image: sampleImage,
-      description: "A sample newborn clothing set for your little one's wardrobe."
+      description:
+        "A sample newborn clothing set for your little one's wardrobe."
     },
 
     "Cozy Little Romper": {
@@ -120,7 +175,8 @@ document.addEventListener("DOMContentLoaded", function () {
       gender: "Boys",
       type: "Rompers",
       image: sampleImage,
-      description: "A sample infant romper style for everyday wear."
+      description:
+        "A sample infant romper style for everyday wear."
     },
 
     "Soft Cloud Bodysuit": {
@@ -130,7 +186,8 @@ document.addEventListener("DOMContentLoaded", function () {
       gender: "Unisex",
       type: "Bodysuits",
       image: sampleImage,
-      description: "A sample bodysuit design for a newborn clothing collection."
+      description:
+        "A sample bodysuit design for a newborn clothing collection."
     },
 
     "Little Star Night Suit": {
@@ -140,50 +197,19 @@ document.addEventListener("DOMContentLoaded", function () {
       gender: "Girls",
       type: "Nightwear",
       image: sampleImage,
-      description: "A sample night suit style for your little one's wardrobe."
+      description:
+        "A sample night suit style for your little one's wardrobe."
     }
   };
 
-  // ==========================================
-  // 5. CART COUNT
-  // ==========================================
-
-  function getCart() {
-    try {
-      const savedCart = JSON.parse(
-        localStorage.getItem("threadverseLittleCart") || "[]"
-      );
-
-      return Array.isArray(savedCart) ? savedCart : [];
-    } catch (error) {
-      return [];
-    }
-  }
-
-  function updateCartCount() {
-    const cart = getCart();
-
-    const total = cart.reduce(function (sum, item) {
-      return sum + (Number(item.quantity) || 0);
-    }, 0);
-
-    const countElement = document.getElementById("headerCartCount");
-
-    if (countElement) {
-      countElement.textContent = total;
-    }
-  }
-
-  updateCartCount();
 
   // ==========================================
-  // 6. SHOP PAGE FILTERS AND SEARCH
+  // 6. SHOP PAGE: SEARCH, FILTER AND SORT
   // ==========================================
 
   const grid = document.getElementById("shopProductGrid");
 
   if (grid) {
-
     const cards = Array.from(
       grid.querySelectorAll(".shop-product-card")
     );
@@ -200,7 +226,10 @@ document.addEventListener("DOMContentLoaded", function () {
     cards.forEach(function (card) {
       card.style.cursor = "pointer";
 
-      card.addEventListener("click", function () {
+      card.addEventListener("click", function (event) {
+        // Do not navigate if a link or button inside the card was clicked.
+        if (event.target.closest("a, button")) return;
+
         const productName = card.dataset.name;
 
         if (productName) {
@@ -219,8 +248,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function updateShop() {
+      const searchValue = search
+        ? search.value.toLowerCase().trim()
+        : "";
 
-      const searchValue = search ? search.value.toLowerCase().trim() : "";
       const age = getSelected("age");
       const gender = getSelected("gender");
       const type = getSelected("type");
@@ -228,11 +259,11 @@ document.addEventListener("DOMContentLoaded", function () {
       let visibleCards = [];
 
       cards.forEach(function (card) {
-
         const name = (card.dataset.name || "").toLowerCase();
 
         const matchesSearch = name.includes(searchValue);
-        const matchesAge = age === "all" || card.dataset.age === age;
+        const matchesAge =
+          age === "all" || card.dataset.age === age;
         const matchesGender =
           gender === "all" || card.dataset.gender === gender;
         const matchesType =
@@ -265,7 +296,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (sort && sort.value === "name") {
         visibleCards.sort(function (a, b) {
-          return (a.dataset.name || "").localeCompare(b.dataset.name || "");
+          return (a.dataset.name || "").localeCompare(
+            b.dataset.name || ""
+          );
         });
       }
 
@@ -288,7 +321,9 @@ document.addEventListener("DOMContentLoaded", function () {
       if (age !== "all") selectedLabels.push(age);
       if (gender !== "all") selectedLabels.push(gender);
       if (type !== "all") selectedLabels.push(type);
-      if (searchValue) selectedLabels.push('Search: "' + searchValue + '"');
+      if (searchValue) {
+        selectedLabels.push('Search: "' + searchValue + '"');
+      }
 
       if (activeFilters) {
         activeFilters.textContent = selectedLabels.length
@@ -312,22 +347,15 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     function clearAllFilters() {
+      ["age", "gender", "type"].forEach(function (groupName) {
+        const allOption = document.querySelector(
+          'input[name="' + groupName + '"][value="all"]'
+        );
 
-      const ageAll = document.querySelector(
-        'input[name="age"][value="all"]'
-      );
-
-      const genderAll = document.querySelector(
-        'input[name="gender"][value="all"]'
-      );
-
-      const typeAll = document.querySelector(
-        'input[name="type"][value="all"]'
-      );
-
-      if (ageAll) ageAll.checked = true;
-      if (genderAll) genderAll.checked = true;
-      if (typeAll) typeAll.checked = true;
+        if (allOption) {
+          allOption.checked = true;
+        }
+      });
 
       if (search) search.value = "";
       if (sort) sort.value = "featured";
@@ -346,6 +374,7 @@ document.addEventListener("DOMContentLoaded", function () {
     updateShop();
   }
 
+
   // ==========================================
   // 7. PRODUCT DETAILS PAGE
   // ==========================================
@@ -353,558 +382,555 @@ document.addEventListener("DOMContentLoaded", function () {
   const detailImage = document.getElementById("detailImage");
 
   if (detailImage) {
-
     const params = new URLSearchParams(window.location.search);
     const name = params.get("name");
     const product = products[name];
 
+    const information = document.querySelector(".product-information");
+
     if (!product) {
-
-      const information = document.querySelector(".product-information");
-
       if (information) {
         information.innerHTML =
           '<h1>Product not found</h1>' +
           '<p>Please return to our collection and select a product.</p>' +
           '<a href="shop.html">Back to Shop</a>';
       }
+    } else {
+      document.title = name + " | THREADVERSE LITTLE";
 
-      return;
-    }
+      const detailName = document.getElementById("detailName");
+      const detailCategory = document.getElementById("detailCategory");
+      const detailPrice = document.getElementById("detailPrice");
+      const detailDescription =
+        document.getElementById("detailDescription");
+      const detailAge = document.getElementById("detailAge");
+      const detailGender = document.getElementById("detailGender");
 
-    document.title = name + " | THREADVERSE LITTLE";
+      if (detailName) detailName.textContent = name;
+      if (detailCategory) detailCategory.textContent = product.type;
+      if (detailPrice) detailPrice.textContent = money(product.price);
 
-    document.getElementById("detailName").textContent = name;
-    document.getElementById("detailCategory").textContent = product.type;
-    document.getElementById("detailPrice").textContent =
-      "₹" + product.price;
+      if (detailDescription) {
+        detailDescription.textContent = product.description;
+      }
 
-    document.getElementById("detailDescription").textContent =
-      product.description;
+      if (detailAge) {
+        detailAge.textContent = "Age group: " + product.ageLabel;
+      }
 
-    document.getElementById("detailAge").textContent =
-      "Age group: " + product.ageLabel;
+      if (detailGender) {
+        detailGender.textContent = "Style: " + product.gender;
+      }
 
-    document.getElementById("detailGender").textContent =
-      "Style: " + product.gender;
+      detailImage.src = product.image;
+      detailImage.alt = name;
 
-    detailImage.src = product.image;
-    detailImage.alt = name;
+      // Baby size options.
+      const sizeSelect = document.getElementById("sizeSelect");
 
-    // Baby size options.
-    const sizeSelect = document.getElementById("sizeSelect");
+      if (sizeSelect) {
+        // Keep the first placeholder option, if present.
+        sizeSelect.innerHTML =
+          '<option value="">Select Baby Size</option>';
 
-    const sizes = product.age === "newborn"
-      ? ["Newborn", "0–3 Months"]
-      : ["3–6 Months", "6–9 Months", "9–12 Months"];
+        const sizes = product.age === "newborn"
+          ? ["Newborn", "0–3 Months"]
+          : ["3–6 Months", "6–9 Months", "9–12 Months"];
 
-    sizes.forEach(function (size) {
-      const option = document.createElement("option");
-      option.value = size;
-      option.textContent = size;
-      sizeSelect.appendChild(option);
-    });
-
-    // Quantity buttons.
-    const quantityInput = document.getElementById("quantityInput");
-    const decreaseQty = document.getElementById("decreaseQty");
-    const increaseQty = document.getElementById("increaseQty");
-
-    if (decreaseQty && quantityInput) {
-      decreaseQty.addEventListener("click", function () {
-        quantityInput.value = Math.max(
-          1,
-          Number(quantityInput.value) - 1
-        );
-      });
-    }
-
-    if (increaseQty && quantityInput) {
-      increaseQty.addEventListener("click", function () {
-        quantityInput.value = Math.min(
-          10,
-          Number(quantityInput.value) + 1
-        );
-      });
-    }
-
-    // Add to Cart.
-    const addButton = document.getElementById("addToCart");
-    const message = document.getElementById("cartMessage");
-
-    if (addButton) {
-      addButton.addEventListener("click", function () {
-
-        const size = sizeSelect.value;
-        const quantity = Number(quantityInput.value);
-
-        if (!size) {
-          message.textContent = "Please select a baby size first.";
-          sizeSelect.focus();
-          return;
-        }
-
-        const cart = getCart();
-
-        const existingItem = cart.find(function (item) {
-          return item.name === name && item.size === size;
+        sizes.forEach(function (size) {
+          const option = document.createElement("option");
+          option.value = size;
+          option.textContent = size;
+          sizeSelect.appendChild(option);
         });
+      }
 
-        if (existingItem) {
-          existingItem.quantity =
-            Number(existingItem.quantity) + quantity;
-        } else {
-          cart.push({
-            name: name,
-            price: product.price,
-            image: product.image,
-            size: size,
-            quantity: quantity
+      // Quantity controls.
+      const quantityInput =
+        document.getElementById("quantityInput");
+      const decreaseQty = document.getElementById("decreaseQty");
+      const increaseQty = document.getElementById("increaseQty");
+
+      if (quantityInput) {
+        quantityInput.value = 1;
+        quantityInput.min = 1;
+        quantityInput.max = 10;
+      }
+
+      if (decreaseQty && quantityInput) {
+        decreaseQty.addEventListener("click", function () {
+          quantityInput.value = Math.max(
+            1,
+            (Number(quantityInput.value) || 1) - 1
+          );
+        });
+      }
+
+      if (increaseQty && quantityInput) {
+        increaseQty.addEventListener("click", function () {
+          quantityInput.value = Math.min(
+            10,
+            (Number(quantityInput.value) || 1) + 1
+          );
+        });
+      }
+
+      // Add to Cart.
+      const addButton = document.getElementById("addToCart");
+      const message = document.getElementById("cartMessage");
+
+      if (addButton) {
+        addButton.addEventListener("click", function () {
+          if (!sizeSelect || !quantityInput) {
+            alert("Product size or quantity selection is unavailable.");
+            return;
+          }
+
+          const size = sizeSelect.value;
+          const quantity = Math.max(
+            1,
+            Math.min(10, Number(quantityInput.value) || 1)
+          );
+
+          if (!size) {
+            if (message) {
+              message.textContent = "Please select a baby size first.";
+            }
+
+            sizeSelect.focus();
+            return;
+          }
+
+          const cart = getCart();
+
+          const existingItem = cart.find(function (item) {
+            return item.name === name && item.size === size;
           });
-        }
 
-        localStorage.setItem(
-          "threadverseLittleCart",
-          JSON.stringify(cart)
-        );
+          if (existingItem) {
+            existingItem.quantity = Math.min(
+              10,
+              Number(existingItem.quantity) + quantity
+            );
+          } else {
+            cart.push({
+              name: name,
+              price: product.price,
+              image: product.image,
+              size: size,
+              quantity: quantity
+            });
+          }
 
-        message.textContent =
-          "Added to your shopping cart successfully!";
+          saveCart(cart);
 
-        updateCartCount();
-      });
+          if (message) {
+            message.textContent =
+              "Added to your shopping cart successfully!";
+          }
+        });
+      }
     }
   }
 
-});
 
-// ==========================================
-// THREADVERSE LITTLE - SHOPPING CART PAGE
-// ==========================================
-
-document.addEventListener("DOMContentLoaded", function () {
+  // ==========================================
+  // 8. SHOPPING CART PAGE
+  // ==========================================
 
   const cartItemsContainer = document.getElementById("cartItems");
 
-  // Run only on Cart page.
-  if (!cartItemsContainer) return;
+  if (cartItemsContainer) {
+    const emptyCart = document.getElementById("emptyCart");
+    const itemCount = document.getElementById("cartItemCount");
+    const summaryItems = document.getElementById("summaryItems");
+    const subtotalElement = document.getElementById("cartSubtotal");
+    const totalElement = document.getElementById("cartTotal");
+    const checkoutButton = document.getElementById("checkoutButton");
 
-  const emptyCart = document.getElementById("emptyCart");
-  const itemCount = document.getElementById("cartItemCount");
-  const summaryItems = document.getElementById("summaryItems");
-  const subtotalElement = document.getElementById("cartSubtotal");
-  const totalElement = document.getElementById("cartTotal");
-  const checkoutButton = document.getElementById("checkoutButton");
-  const headerCount = document.getElementById("headerCartCount");
+    function updateCart() {
+      const cart = getCart();
 
-  function readCart() {
-    try {
-      const cart = JSON.parse(
-        localStorage.getItem("threadverseLittleCart") || "[]"
-      );
+      cartItemsContainer.innerHTML = "";
 
-      return Array.isArray(cart) ? cart : [];
-    } catch (error) {
-      return [];
-    }
-  }
+      const totalQuantity = cart.reduce(function (sum, item) {
+        return sum + (Number(item.quantity) || 0);
+      }, 0);
 
-  function saveCart(cart) {
-    localStorage.setItem(
-      "threadverseLittleCart",
-      JSON.stringify(cart)
-    );
-  }
+      const subtotal = cart.reduce(function (sum, item) {
+        return sum +
+          (Number(item.price) || 0) * (Number(item.quantity) || 0);
+      }, 0);
 
-  function formatPrice(amount) {
-    return "₹" + Number(amount).toLocaleString("en-IN");
-  }
-
-  function updateCart() {
-
-    const cart = readCart();
-
-    cartItemsContainer.innerHTML = "";
-
-    const totalQuantity = cart.reduce(function (sum, item) {
-      return sum + (Number(item.quantity) || 0);
-    }, 0);
-
-    const subtotal = cart.reduce(function (sum, item) {
-      return sum +
-        (Number(item.price) * Number(item.quantity));
-    }, 0);
-
-    if (headerCount) {
-      headerCount.textContent = totalQuantity;
-    }
-
-    if (itemCount) {
-      itemCount.textContent =
-        totalQuantity +
-        (totalQuantity === 1 ? " item" : " items");
-    }
-
-    if (summaryItems) {
-      summaryItems.textContent = totalQuantity;
-    }
-
-    if (subtotalElement) {
-      subtotalElement.textContent = formatPrice(subtotal);
-    }
-
-    if (totalElement) {
-      totalElement.textContent = formatPrice(subtotal);
-    }
-
-    // Show empty cart message.
-    if (cart.length === 0) {
-      emptyCart.hidden = false;
-      cartItemsContainer.hidden = true;
-      return;
-    }
-
-    emptyCart.hidden = true;
-    cartItemsContainer.hidden = false;
-
-    // Display each cart product.
-    cart.forEach(function (item, index) {
-
-      const article = document.createElement("article");
-      article.className = "cart-item";
-
-      const image = document.createElement("img");
-      image.className = "cart-item-image";
-      image.src = item.image || "";
-      image.alt = item.name || "Baby clothing";
-
-      image.addEventListener("error", function () {
-        image.style.visibility = "hidden";
-      });
-
-      const info = document.createElement("div");
-      info.className = "cart-item-info";
-
-      const name = document.createElement("h3");
-      name.textContent = item.name;
-
-      const size = document.createElement("p");
-      size.textContent = "Size: " + item.size;
-
-      const unitPrice = document.createElement("p");
-      unitPrice.textContent =
-        "Price: " + formatPrice(item.price);
-
-      const quantityBox = document.createElement("div");
-      quantityBox.className = "cart-quantity";
-
-      const decrease = document.createElement("button");
-      decrease.type = "button";
-      decrease.textContent = "−";
-      decrease.dataset.action = "decrease";
-      decrease.dataset.index = index;
-      decrease.setAttribute("aria-label", "Decrease quantity");
-
-      const quantity = document.createElement("span");
-      quantity.textContent = item.quantity;
-
-      const increase = document.createElement("button");
-      increase.type = "button";
-      increase.textContent = "+";
-      increase.dataset.action = "increase";
-      increase.dataset.index = index;
-      increase.setAttribute("aria-label", "Increase quantity");
-
-      quantityBox.appendChild(decrease);
-      quantityBox.appendChild(quantity);
-      quantityBox.appendChild(increase);
-
-      info.appendChild(name);
-      info.appendChild(size);
-      info.appendChild(unitPrice);
-      info.appendChild(quantityBox);
-
-      const actions = document.createElement("div");
-      actions.className = "cart-item-actions";
-
-      const lineTotal = document.createElement("div");
-      lineTotal.className = "cart-line-total";
-      lineTotal.textContent =
-        formatPrice(Number(item.price) * Number(item.quantity));
-
-      const removeButton = document.createElement("button");
-      removeButton.type = "button";
-      removeButton.className = "remove-cart-item";
-      removeButton.textContent = "Remove";
-      removeButton.dataset.action = "remove";
-      removeButton.dataset.index = index;
-
-      actions.appendChild(lineTotal);
-      actions.appendChild(removeButton);
-
-      article.appendChild(image);
-      article.appendChild(info);
-      article.appendChild(actions);
-
-      cartItemsContainer.appendChild(article);
-    });
-  }
-
-  // Handle quantity changes and remove buttons.
-  cartItemsContainer.addEventListener("click", function (event) {
-
-    const button = event.target.closest("button[data-action]");
-
-    if (!button) return;
-
-    const index = Number(button.dataset.index);
-    const action = button.dataset.action;
-
-    const cart = readCart();
-
-    if (!cart[index]) return;
-
-    if (action === "increase") {
-      if (Number(cart[index].quantity) < 10) {
-        cart[index].quantity =
-          Number(cart[index].quantity) + 1;
+      if (itemCount) {
+        itemCount.textContent =
+          totalQuantity +
+          (totalQuantity === 1 ? " item" : " items");
       }
-    }
 
-    if (action === "decrease") {
-      if (Number(cart[index].quantity) > 1) {
-        cart[index].quantity =
-          Number(cart[index].quantity) - 1;
+      if (summaryItems) {
+        summaryItems.textContent = totalQuantity;
       }
-    }
 
-    if (action === "remove") {
-      cart.splice(index, 1);
-    }
+      if (subtotalElement) {
+        subtotalElement.textContent = money(subtotal);
+      }
 
-    saveCart(cart);
-    updateCart();
-  });
-
-  // Checkout placeholder.
-  if (checkoutButton) {
-    checkoutButton.addEventListener("click", function () {
-
-      const cart = readCart();
+      if (totalElement) {
+        totalElement.textContent = money(subtotal);
+      }
 
       if (cart.length === 0) {
-        alert("Your shopping cart is empty. Please add a product first.");
+        if (emptyCart) emptyCart.hidden = false;
+        cartItemsContainer.hidden = true;
         return;
       }
 
-      alert(
-        "Your cart is ready! We will build the secure Checkout page in the next stage."
-      );
+      if (emptyCart) emptyCart.hidden = true;
+      cartItemsContainer.hidden = false;
+
+      cart.forEach(function (item, index) {
+        const article = document.createElement("article");
+        article.className = "cart-item";
+
+        const image = document.createElement("img");
+        image.className = "cart-item-image";
+        image.src = item.image || "";
+        image.alt = item.name || "Baby clothing";
+
+        image.addEventListener("error", function () {
+          image.style.visibility = "hidden";
+        });
+
+        const info = document.createElement("div");
+        info.className = "cart-item-info";
+
+        const name = document.createElement("h3");
+        name.textContent = item.name || "Baby clothing";
+
+        const size = document.createElement("p");
+        size.textContent = "Size: " + (item.size || "Not selected");
+
+        const unitPrice = document.createElement("p");
+        unitPrice.textContent = "Price: " + money(item.price);
+
+        const quantityBox = document.createElement("div");
+        quantityBox.className = "cart-quantity";
+
+        const decrease = document.createElement("button");
+        decrease.type = "button";
+        decrease.textContent = "−";
+        decrease.dataset.action = "decrease";
+        decrease.dataset.index = index;
+        decrease.setAttribute("aria-label", "Decrease quantity");
+
+        const quantity = document.createElement("span");
+        quantity.textContent = item.quantity;
+
+        const increase = document.createElement("button");
+        increase.type = "button";
+        increase.textContent = "+";
+        increase.dataset.action = "increase";
+        increase.dataset.index = index;
+        increase.setAttribute("aria-label", "Increase quantity");
+
+        quantityBox.appendChild(decrease);
+        quantityBox.appendChild(quantity);
+        quantityBox.appendChild(increase);
+
+        info.appendChild(name);
+        info.appendChild(size);
+        info.appendChild(unitPrice);
+        info.appendChild(quantityBox);
+
+        const actions = document.createElement("div");
+        actions.className = "cart-item-actions";
+
+        const lineTotal = document.createElement("div");
+        lineTotal.className = "cart-line-total";
+        lineTotal.textContent = money(
+          Number(item.price) * Number(item.quantity)
+        );
+
+        const removeButton = document.createElement("button");
+        removeButton.type = "button";
+        removeButton.className = "remove-cart-item";
+        removeButton.textContent = "Remove";
+        removeButton.dataset.action = "remove";
+        removeButton.dataset.index = index;
+
+        actions.appendChild(lineTotal);
+        actions.appendChild(removeButton);
+
+        article.appendChild(image);
+        article.appendChild(info);
+        article.appendChild(actions);
+
+        cartItemsContainer.appendChild(article);
+      });
+    }
+
+    // Quantity changes and remove buttons.
+    cartItemsContainer.addEventListener("click", function (event) {
+      const button = event.target.closest("button[data-action]");
+
+      if (!button) return;
+
+      const index = Number(button.dataset.index);
+      const action = button.dataset.action;
+      const cart = getCart();
+
+      if (!cart[index]) return;
+
+      if (action === "increase") {
+        cart[index].quantity = Math.min(
+          10,
+          Number(cart[index].quantity) + 1
+        );
+      }
+
+      if (action === "decrease") {
+        cart[index].quantity = Math.max(
+          1,
+          Number(cart[index].quantity) - 1
+        );
+      }
+
+      if (action === "remove") {
+        cart.splice(index, 1);
+      }
+
+      saveCart(cart);
+      updateCart();
     });
+
+    // IMPORTANT: Open the Checkout page.
+    if (checkoutButton) {
+      checkoutButton.addEventListener("click", function () {
+        const cart = getCart();
+
+        if (cart.length === 0) {
+          alert("Your shopping cart is empty. Please add a product first.");
+          return;
+        }
+
+        window.location.href = "checkout.html";
+      });
+    }
+
+    updateCart();
   }
 
-  // Initial cart display.
-  updateCart();
 
-});
-
-// ==========================================
-// THREADVERSE LITTLE - CHECKOUT FUNCTIONALITY
-// ==========================================
-
-document.addEventListener("DOMContentLoaded", function () {
+  // ==========================================
+  // 9. CHECKOUT PAGE
+  // ==========================================
 
   const checkoutForm = document.getElementById("checkoutForm");
 
-  // Run only on Checkout page.
-  if (!checkoutForm) return;
+  if (checkoutForm) {
+    const checkoutEmpty = document.getElementById("checkoutEmpty");
+    const orderSuccess = document.getElementById("orderSuccess");
+    const checkoutProducts = document.getElementById("checkoutProducts");
 
-  const checkoutEmpty = document.getElementById("checkoutEmpty");
-  const orderSuccess = document.getElementById("orderSuccess");
-  const checkoutProducts = document.getElementById("checkoutProducts");
+    function showCheckoutCart() {
+      const cart = getCart();
 
-  function getCheckoutCart() {
-    try {
-      const cart = JSON.parse(
-        localStorage.getItem("threadverseLittleCart") || "[]"
-      );
+      const count = cart.reduce(function (sum, item) {
+        return sum + (Number(item.quantity) || 0);
+      }, 0);
 
-      return Array.isArray(cart) ? cart : [];
-    } catch (error) {
-      return [];
-    }
-  }
+      const subtotal = cart.reduce(function (sum, item) {
+        return sum +
+          (Number(item.price) || 0) * (Number(item.quantity) || 0);
+      }, 0);
 
-  function money(amount) {
-    return "₹" + Number(amount).toLocaleString("en-IN");
-  }
+      if (cart.length === 0) {
+        checkoutForm.hidden = true;
 
-  function showCheckoutCart() {
+        if (checkoutEmpty) {
+          checkoutEmpty.hidden = false;
+        }
 
-    const cart = getCheckoutCart();
+        return;
+      }
 
-    const count = cart.reduce(function (sum, item) {
-      return sum + (Number(item.quantity) || 0);
-    }, 0);
+      checkoutForm.hidden = false;
 
-    const subtotal = cart.reduce(function (sum, item) {
-      return sum + Number(item.price) * Number(item.quantity);
-    }, 0);
+      if (checkoutEmpty) {
+        checkoutEmpty.hidden = true;
+      }
 
-    const headerCount = document.getElementById("headerCartCount");
+      const checkoutItemCount =
+        document.getElementById("checkoutItemCount");
+      const checkoutSubtotal =
+        document.getElementById("checkoutSubtotal");
+      const checkoutTotal =
+        document.getElementById("checkoutTotal");
 
-    if (headerCount) {
-      headerCount.textContent = count;
-    }
+      if (checkoutItemCount) {
+        checkoutItemCount.textContent = count;
+      }
 
-    if (cart.length === 0) {
-      checkoutForm.hidden = true;
-      checkoutEmpty.hidden = false;
-      return;
-    }
+      if (checkoutSubtotal) {
+        checkoutSubtotal.textContent = money(subtotal);
+      }
 
-    checkoutForm.hidden = false;
-    checkoutEmpty.hidden = true;
+      if (checkoutTotal) {
+        checkoutTotal.textContent = money(subtotal);
+      }
 
-    document.getElementById("checkoutItemCount").textContent = count;
-    document.getElementById("checkoutSubtotal").textContent = money(subtotal);
-    document.getElementById("checkoutTotal").textContent = money(subtotal);
+      if (!checkoutProducts) return;
 
-    checkoutProducts.innerHTML = "";
+      checkoutProducts.innerHTML = "";
 
-    cart.forEach(function (item) {
+      cart.forEach(function (item) {
+        const product = document.createElement("div");
+        product.className = "checkout-product";
 
-      const product = document.createElement("div");
-      product.className = "checkout-product";
+        const image = document.createElement("img");
+        image.src = item.image || "";
+        image.alt = item.name || "Baby clothing";
 
-      const image = document.createElement("img");
-      image.src = item.image || "";
-      image.alt = item.name || "Baby clothing";
+        image.addEventListener("error", function () {
+          image.style.visibility = "hidden";
+        });
 
-      image.addEventListener("error", function () {
-        image.style.visibility = "hidden";
+        const info = document.createElement("div");
+
+        const name = document.createElement("h3");
+        name.textContent = item.name || "Baby clothing";
+
+        const size = document.createElement("p");
+        size.textContent = "Size: " + (item.size || "Not selected");
+
+        const quantity = document.createElement("p");
+        quantity.textContent = "Quantity: " + item.quantity;
+
+        info.appendChild(name);
+        info.appendChild(size);
+        info.appendChild(quantity);
+
+        const price = document.createElement("div");
+        price.className = "checkout-product-price";
+        price.textContent = money(
+          Number(item.price) * Number(item.quantity)
+        );
+
+        product.appendChild(image);
+        product.appendChild(info);
+        product.appendChild(price);
+
+        checkoutProducts.appendChild(product);
       });
+    }
 
-      const info = document.createElement("div");
+    showCheckoutCart();
 
-      const name = document.createElement("h3");
-      name.textContent = item.name;
+    // This creates a DEMO order in this browser only.
+    checkoutForm.addEventListener("submit", function (event) {
+      event.preventDefault();
 
-      const size = document.createElement("p");
-      size.textContent = "Size: " + item.size;
+      const cart = getCart();
 
-      const quantity = document.createElement("p");
-      quantity.textContent = "Quantity: " + item.quantity;
+      if (cart.length === 0) {
+        alert("Your cart is empty. Please add a product first.");
+        return;
+      }
 
-      info.appendChild(name);
-      info.appendChild(size);
-      info.appendChild(quantity);
+      if (!checkoutForm.reportValidity()) {
+        return;
+      }
 
-      const price = document.createElement("div");
-      price.className = "checkout-product-price";
-      price.textContent = money(
-        Number(item.price) * Number(item.quantity)
+      const payment = document.querySelector(
+        'input[name="paymentMethod"]:checked'
       );
 
-      product.appendChild(image);
-      product.appendChild(info);
-      product.appendChild(price);
+      if (!payment || payment.value !== "cod") {
+        alert("Please select an available payment method.");
+        return;
+      }
 
-      checkoutProducts.appendChild(product);
+      const formData = new FormData(checkoutForm);
+
+      const demoOrder = {
+        orderId: "TVL-DEMO-" + Date.now(),
+
+        customer: {
+          name: formData.get("customerName"),
+          email: formData.get("customerEmail"),
+          phone: formData.get("customerPhone")
+        },
+
+        address: {
+          addressLine: formData.get("addressLine"),
+          landmark: formData.get("landmark"),
+          city: formData.get("city"),
+          state: formData.get("state"),
+          pincode: formData.get("pincode"),
+          country: "India"
+        },
+
+        products: cart,
+        paymentMethod: "Cash on Delivery (Demo)",
+
+        subtotal: cart.reduce(function (sum, item) {
+          return sum +
+            Number(item.price) * Number(item.quantity);
+        }, 0),
+
+        createdAt: new Date().toISOString(),
+        demoOnly: true
+      };
+
+      // Save the demonstration order in this browser.
+      try {
+        const oldOrders = JSON.parse(
+          localStorage.getItem(DEMO_ORDERS_KEY) || "[]"
+        );
+
+        if (!Array.isArray(oldOrders)) {
+          throw new Error("Invalid saved order data");
+        }
+
+        oldOrders.push(demoOrder);
+
+        localStorage.setItem(
+          DEMO_ORDERS_KEY,
+          JSON.stringify(oldOrders)
+        );
+
+      } catch (error) {
+        alert("Unable to save the demo order in this browser.");
+        console.error(error);
+        return;
+      }
+
+      const demoOrderId = document.getElementById("demoOrderId");
+
+      if (demoOrderId) {
+        demoOrderId.textContent = demoOrder.orderId;
+      }
+
+      checkoutForm.hidden = true;
+
+      if (checkoutEmpty) {
+        checkoutEmpty.hidden = true;
+      }
+
+      if (orderSuccess) {
+        orderSuccess.hidden = false;
+      }
+
+      // Clear the demo cart after successful demo submission.
+      localStorage.removeItem(CART_KEY);
+      updateCartCount();
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
     });
   }
-
-  // Display order information.
-  showCheckoutCart();
-
-  // Demo order submission only.
-  checkoutForm.addEventListener("submit", function (event) {
-
-    event.preventDefault();
-
-    const cart = getCheckoutCart();
-
-    if (cart.length === 0) {
-      alert("Your cart is empty. Please add a product first.");
-      return;
-    }
-
-    if (!checkoutForm.reportValidity()) {
-      return;
-    }
-
-    const payment = document.querySelector(
-      'input[name="paymentMethod"]:checked'
-    );
-
-    if (!payment || payment.value !== "cod") {
-      alert("Please select an available payment method.");
-      return;
-    }
-
-    const formData = new FormData(checkoutForm);
-
-    const demoOrder = {
-      orderId: "TVL-DEMO-" + Date.now(),
-      customer: {
-        name: formData.get("customerName"),
-        email: formData.get("customerEmail"),
-        phone: formData.get("customerPhone")
-      },
-      address: {
-        addressLine: formData.get("addressLine"),
-        landmark: formData.get("landmark"),
-        city: formData.get("city"),
-        state: formData.get("state"),
-        pincode: formData.get("pincode"),
-        country: "India"
-      },
-      products: cart,
-      paymentMethod: "Cash on Delivery (Demo)",
-      subtotal: cart.reduce(function (sum, item) {
-        return sum + Number(item.price) * Number(item.quantity);
-      }, 0),
-      createdAt: new Date().toISOString(),
-      demoOnly: true
-    };
-
-    // Save only a demonstration order in this browser.
-    try {
-      const oldOrders = JSON.parse(
-        localStorage.getItem("threadverseLittleDemoOrders") || "[]"
-      );
-
-      oldOrders.push(demoOrder);
-
-      localStorage.setItem(
-        "threadverseLittleDemoOrders",
-        JSON.stringify(oldOrders)
-      );
-    } catch (error) {
-      alert("Unable to save the demo order in this browser.");
-      return;
-    }
-
-    document.getElementById("demoOrderId").textContent =
-      demoOrder.orderId;
-
-    checkoutForm.hidden = true;
-    checkoutEmpty.hidden = true;
-    orderSuccess.hidden = false;
-
-    // Clear the demonstration cart after successful demo submission.
-    localStorage.removeItem("threadverseLittleCart");
-
-    const headerCount = document.getElementById("headerCartCount");
-
-    if (headerCount) {
-      headerCount.textContent = "0";
-    }
-
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-  });
 
 });
