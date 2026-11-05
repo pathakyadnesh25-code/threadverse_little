@@ -554,3 +554,383 @@ a {
     max-width: 100%;
   }
 }
+
+
+/* ==================================
+   THREADVERSE LITTLE - SHOP PAGE
+================================== */
+
+.shop-page {
+  background: #fbf8f4;
+}
+
+.active-link {
+  color: #b8797d !important;
+}
+
+.shop-hero {
+  text-align: center;
+  padding: 75px 20px 55px;
+  background: #f2dfe0;
+}
+
+.shop-hero h1 {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(35px, 5vw, 58px);
+  margin-bottom: 15px;
+}
+
+.shop-hero h1 span {
+  color: #b8797d;
+}
+
+.shop-hero > p:not(.eyebrow) {
+  color: #81736f;
+  font-size: 14px;
+}
+
+.shop-breadcrumb {
+  margin-top: 25px;
+  font-size: 12px;
+  color: #81736f;
+}
+
+.shop-breadcrumb a {
+  color: #453532;
+}
+
+.shop-main {
+  padding: 65px 7%;
+}
+
+.shop-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 20px;
+  margin-bottom: 28px;
+}
+
+.shop-heading h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 35px;
+}
+
+.shop-subtitle {
+  color: #81736f;
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+.result-count {
+  color: #81736f;
+  font-size: 12px;
+}
+
+.shop-toolbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: white;
+  border: 1px solid #e8ded8;
+  padding: 0 16px;
+  border-radius: 5px;
+  flex: 1;
+  max-width: 430px;
+}
+
+.search-box span {
+  font-size: 23px;
+  color: #b8797d;
+}
+
+.search-box input {
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 14px 0;
+  font-family: inherit;
+}
+
+.shop-toolbar select {
+  padding: 13px;
+  border: 1px solid #e8ded8;
+  background: white;
+  color: #453532;
+  border-radius: 5px;
+  font-family: inherit;
+}
+
+.shop-layout {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 35px;
+}
+
+.shop-filters {
+  background: white;
+  padding: 23px;
+  border: 1px solid #eee6e1;
+  border-radius: 6px;
+  height: fit-content;
+}
+
+.filter-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #eee6e1;
+}
+
+.filter-heading h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 22px;
+}
+
+.filter-heading button {
+  border: none;
+  background: none;
+  color: #b8797d;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.filter-group {
+  padding: 22px 0;
+  border-bottom: 1px solid #eee6e1;
+}
+
+.filter-group h4 {
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+
+.filter-group label {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 12px;
+  color: #81736f;
+  margin: 13px 0;
+  cursor: pointer;
+}
+
+.filter-group input {
+  accent-color: #b8797d;
+}
+
+.filter-note {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-top: 20px;
+  color: #b8797d;
+}
+
+.filter-note p {
+  color: #81736f;
+  font-size: 11px;
+}
+
+.shop-product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.shop-product-card {
+  background: white;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid #eee6e1;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.shop-product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(69, 53, 50, 0.08);
+}
+
+.shop-product-image {
+  height: 255px;
+  position: relative;
+  overflow: hidden;
+  background: #f2eae5;
+}
+
+.shop-product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.shop-tag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: white;
+  color: #453532;
+  padding: 7px 10px;
+  font-size: 9px;
+  letter-spacing: 1px;
+  border-radius: 20px;
+}
+
+.shop-product-info {
+  padding: 17px;
+}
+
+.shop-product-info > p {
+  font-size: 10px;
+  color: #b8797d;
+  margin-bottom: 8px;
+}
+
+.shop-product-info h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 17px;
+  margin-bottom: 12px;
+}
+
+.shop-price {
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.shop-price span {
+  display: block;
+  color: #a1958f;
+  font-size: 9px;
+  font-weight: 400;
+  margin-top: 5px;
+}
+
+.active-filters {
+  margin-bottom: 16px;
+  font-size: 12px;
+  color: #81736f;
+}
+
+.no-products {
+  text-align: center;
+  padding: 60px 15px;
+  background: white;
+}
+
+.no-products h3 {
+  font-family: "Playfair Display", serif;
+  margin-bottom: 10px;
+}
+
+.no-products p {
+  font-size: 13px;
+  color: #81736f;
+  margin-bottom: 20px;
+}
+
+.no-products button {
+  border: none;
+  background: #453532;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+.shop-bottom {
+  text-align: center;
+  padding: 75px 20px;
+  background: #eeeaf4;
+}
+
+.shop-bottom h2 {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(27px, 4vw, 40px);
+  margin-bottom: 25px;
+}
+
+@media (max-width: 1000px) {
+  .shop-product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .shop-layout {
+    grid-template-columns: 210px 1fr;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 650px) {
+  .shop-main {
+    padding: 45px 5%;
+  }
+
+  .shop-heading {
+    align-items: start;
+    flex-direction: column;
+  }
+
+  .shop-toolbar {
+    flex-direction: column;
+  }
+
+  .search-box {
+    max-width: none;
+    min-height: 45px;
+  }
+
+  .shop-toolbar select {
+    width: 100%;
+  }
+
+  .shop-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .shop-filters {
+    padding: 18px;
+  }
+
+  .shop-product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .shop-product-image {
+    height: 190px;
+  }
+
+  .shop-product-info {
+    padding: 12px;
+  }
+
+  .shop-product-info h3 {
+    font-size: 14px;
+  }
+
+  .shop-product-info > p {
+    font-size: 9px;
+  }
+
+  .shop-hero {
+    padding: 55px 15px 40px;
+  }
+}
+
+@media (max-width: 360px) {
+  .shop-product-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .shop-product-image {
+    height: 280px;
+  }
+}
