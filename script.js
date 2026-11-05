@@ -707,3 +707,204 @@ document.addEventListener("DOMContentLoaded", function () {
   updateCart();
 
 });
+
+// ==========================================
+// THREADVERSE LITTLE - CHECKOUT FUNCTIONALITY
+// ==========================================
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  const checkoutForm = document.getElementById("checkoutForm");
+
+  // Run only on Checkout page.
+  if (!checkoutForm) return;
+
+  const checkoutEmpty = document.getElementById("checkoutEmpty");
+  const orderSuccess = document.getElementById("orderSuccess");
+  const checkoutProducts = document.getElementById("checkoutProducts");
+
+  function getCheckoutCart() {
+    try {
+      const cart = JSON.parse(
+        localStorage.getItem("threadverseLittleCart") || "[]"
+      );
+
+      return Array.isArray(cart) ? cart : [];
+    } catch (error) {
+      return [];
+    }
+  }
+
+  function money(amount) {
+    return "₹" + Number(amount).toLocaleString("en-IN");
+  }
+
+  function showCheckoutCart() {
+
+    const cart = getCheckoutCart();
+
+    const count = cart.reduce(function (sum, item) {
+      return sum + (Number(item.quantity) || 0);
+    }, 0);
+
+    const subtotal = cart.reduce(function (sum, item) {
+      return sum + Number(item.price) * Number(item.quantity);
+    }, 0);
+
+    const headerCount = document.getElementById("headerCartCount");
+
+    if (headerCount) {
+      headerCount.textContent = count;
+    }
+
+    if (cart.length === 0) {
+      checkoutForm.hidden = true;
+      checkoutEmpty.hidden = false;
+      return;
+    }
+
+    checkoutForm.hidden = false;
+    checkoutEmpty.hidden = true;
+
+    document.getElementById("checkoutItemCount").textContent = count;
+    document.getElementById("checkoutSubtotal").textContent = money(subtotal);
+    document.getElementById("checkoutTotal").textContent = money(subtotal);
+
+    checkoutProducts.innerHTML = "";
+
+    cart.forEach(function (item) {
+
+      const product = document.createElement("div");
+      product.className = "checkout-product";
+
+      const image = document.createElement("img");
+      image.src = item.image || "";
+      image.alt = item.name || "Baby clothing";
+
+      image.addEventListener("error", function () {
+        image.style.visibility = "hidden";
+      });
+
+      const info = document.createElement("div");
+
+      const name = document.createElement("h3");
+      name.textContent = item.name;
+
+      const size = document.createElement("p");
+      size.textContent = "Size: " + item.size;
+
+      const quantity = document.createElement("p");
+      quantity.textContent = "Quantity: " + item.quantity;
+
+      info.appendChild(name);
+      info.appendChild(size);
+      info.appendChild(quantity);
+
+      const price = document.createElement("div");
+      price.className = "checkout-product-price";
+      price.textContent = money(
+        Number(item.price) * Number(item.quantity)
+      );
+
+      product.appendChild(image);
+      product.appendChild(info);
+      product.appendChild(price);
+
+      checkoutProducts.appendChild(product);
+    });
+  }
+
+  // Display order information.
+  showCheckoutCart();
+
+  // Demo order submission only.
+  checkoutForm.addEventListener("submit", function (event) {
+
+    event.preventDefault();
+
+    const cart = getCheckoutCart();
+
+    if (cart.length === 0) {
+      alert("Your cart is empty. Please add a product first.");
+      return;
+    }
+
+    if (!checkoutForm.reportValidity()) {
+      return;
+    }
+
+    const payment = document.querySelector(
+      'input[name="paymentMethod"]:checked'
+    );
+
+    if (!payment || payment.value !== "cod") {
+      alert("Please select an available payment method.");
+      return;
+    }
+
+    const formData = new FormData(checkoutForm);
+
+    const demoOrder = {
+      orderId: "TVL-DEMO-" + Date.now(),
+      customer: {
+        name: formData.get("customerName"),
+        email: formData.get("customerEmail"),
+        phone: formData.get("customerPhone")
+      },
+      address: {
+        addressLine: formData.get("addressLine"),
+        landmark: formData.get("landmark"),
+        city: formData.get("city"),
+        state: formData.get("state"),
+        pincode: formData.get("pincode"),
+        country: "India"
+      },
+      products: cart,
+      paymentMethod: "Cash on Delivery (Demo)",
+      subtotal: cart.reduce(function (sum, item) {
+        return sum + Number(item.price) * Number(item.quantity);
+      }, 0),
+      createdAt: new Date().toISOString(),
+      demoOnly: true
+    };
+
+    // Save only a demonstration order in this browser.
+    try {
+      const oldOrders = JSON.parse(
+        localStorage.getItem("threadverseLittleDemoOrders") || "[]"
+      );
+
+      oldOrders.push(demoOrder);
+
+      localStorage.setItem(
+        "threadverseLittleDemoOrders",
+        JSON.stringify(oldOrders)
+      );
+    } catch (error) {
+      alert("Unable to save the demo order in this browser.");
+      return;
+    }
+
+    document.getElementById("demoOrderId").textContent =
+      demoOrder.orderId;
+
+    checkoutForm.hidden = true;
+    checkoutEmpty.hidden = true;
+    orderSuccess.hidden = false;
+
+    // Clear the demonstration cart after successful demo submission.
+    localStorage.removeItem("threadverseLittleCart");
+
+    const headerCount = document.getElementById("headerCartCount");
+
+    if (headerCount) {
+      headerCount.textContent = "0";
+    }
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  });
+
+});
