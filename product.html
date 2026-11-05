@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details | THREADVERSE LITTLE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="product-page">
+
+  <div class="announcement">
+    Welcome to THREADVERSE LITTLE — Little Clothes. Big Love.
+  </div>
+
+  <header class="header">
+    <a class="logo" href="index.html">
+      THREADVERSE <span>LITTLE</span>
+    </a>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Open menu">☰</button>
+
+    <nav class="navigation" id="navigation">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="index.html#collections">Collections</a>
+      <a href="index.html#about">Our Story</a>
+    </nav>
+
+    <a href="cart.html" class="header-shop">Cart <span id="headerCartCount">0</span></a>
+  </header>
+
+  <main>
+    <div class="product-breadcrumb">
+      <a href="index.html">Home</a> /
+      <a href="shop.html">Shop</a> /
+      Product Details
+    </div>
+
+    <section class="product-detail">
+
+      <div class="product-gallery">
+        <div class="main-product-image">
+          <img id="detailImage" src="" alt="Baby clothing product">
+        </div>
+        <p class="gallery-note">Product photograph</p>
+      </div>
+
+      <div class="product-information">
+        <p class="eyebrow">THREADVERSE LITTLE COLLECTION</p>
+        <p class="detail-category" id="detailCategory">Baby Clothing</p>
+
+        <h1 id="detailName">Product Name</h1>
+
+        <div class="detail-price" id="detailPrice">₹0</div>
+
+        <p class="detail-description" id="detailDescription">
+          Discover lovely styles for your little one.
+        </p>
+
+        <div class="detail-divider"></div>
+
+        <div class="detail-option">
+          <label for="sizeSelect">Select Baby Size</label>
+          <select id="sizeSelect">
+            <option value="">Choose a size</option>
+          </select>
+        </div>
+
+        <div class="detail-option">
+          <label for="quantityInput">Quantity</label>
+          <div class="quantity-control">
+            <button type="button" id="decreaseQty">−</button>
+            <input type="number" id="quantityInput" value="1" min="1" max="10" readonly>
+            <button type="button" id="increaseQty">+</button>
+          </div>
+        </div>
+
+        <button class="add-cart-button" id="addToCart">
+          Add to Cart
+        </button>
+
+        <p id="cartMessage" class="cart-message" aria-live="polite"></p>
+
+        <div class="detail-divider"></div>
+
+        <div class="product-extra">
+          <h3>Product Information</h3>
+          <p id="detailAge">Age group: —</p>
+          <p id="detailGender">Style: —</p>
+          <p>Material: Confirm with the actual product supplier.</p>
+          <p>Care: Follow the garment's care label.</p>
+        </div>
+
+        <a href="shop.html" class="back-to-shop">← Continue Shopping</a>
+      </div>
+
+    </section>
+
+    <section class="product-promise">
+      <h2>Little Clothes. Big Love.</h2>
+      <p>Discover thoughtful styles for your baby's precious first year.</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-main">
+      <div>
+        <a class="logo footer-logo" href="index.html">
+          THREADVERSE <span>LITTLE</span>
+        </a>
+        <p>Little Clothes. Big Love.</p>
+      </div>
+      <div>
+        <h3>Explore</h3>
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+      </div>
+      <div>
+        <h3>Information</h3>
+        <a href="index.html#contact">Contact Us</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © <span id="currentYear"></span> THREADVERSE LITTLE. All rights reserved.
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
