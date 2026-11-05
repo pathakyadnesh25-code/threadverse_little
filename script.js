@@ -477,3 +477,233 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
 });
+
+// ==========================================
+// THREADVERSE LITTLE - SHOPPING CART PAGE
+// ==========================================
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  const cartItemsContainer = document.getElementById("cartItems");
+
+  // Run only on Cart page.
+  if (!cartItemsContainer) return;
+
+  const emptyCart = document.getElementById("emptyCart");
+  const itemCount = document.getElementById("cartItemCount");
+  const summaryItems = document.getElementById("summaryItems");
+  const subtotalElement = document.getElementById("cartSubtotal");
+  const totalElement = document.getElementById("cartTotal");
+  const checkoutButton = document.getElementById("checkoutButton");
+  const headerCount = document.getElementById("headerCartCount");
+
+  function readCart() {
+    try {
+      const cart = JSON.parse(
+        localStorage.getItem("threadverseLittleCart") || "[]"
+      );
+
+      return Array.isArray(cart) ? cart : [];
+    } catch (error) {
+      return [];
+    }
+  }
+
+  function saveCart(cart) {
+    localStorage.setItem(
+      "threadverseLittleCart",
+      JSON.stringify(cart)
+    );
+  }
+
+  function formatPrice(amount) {
+    return "₹" + Number(amount).toLocaleString("en-IN");
+  }
+
+  function updateCart() {
+
+    const cart = readCart();
+
+    cartItemsContainer.innerHTML = "";
+
+    const totalQuantity = cart.reduce(function (sum, item) {
+      return sum + (Number(item.quantity) || 0);
+    }, 0);
+
+    const subtotal = cart.reduce(function (sum, item) {
+      return sum +
+        (Number(item.price) * Number(item.quantity));
+    }, 0);
+
+    if (headerCount) {
+      headerCount.textContent = totalQuantity;
+    }
+
+    if (itemCount) {
+      itemCount.textContent =
+        totalQuantity +
+        (totalQuantity === 1 ? " item" : " items");
+    }
+
+    if (summaryItems) {
+      summaryItems.textContent = totalQuantity;
+    }
+
+    if (subtotalElement) {
+      subtotalElement.textContent = formatPrice(subtotal);
+    }
+
+    if (totalElement) {
+      totalElement.textContent = formatPrice(subtotal);
+    }
+
+    // Show empty cart message.
+    if (cart.length === 0) {
+      emptyCart.hidden = false;
+      cartItemsContainer.hidden = true;
+      return;
+    }
+
+    emptyCart.hidden = true;
+    cartItemsContainer.hidden = false;
+
+    // Display each cart product.
+    cart.forEach(function (item, index) {
+
+      const article = document.createElement("article");
+      article.className = "cart-item";
+
+      const image = document.createElement("img");
+      image.className = "cart-item-image";
+      image.src = item.image || "";
+      image.alt = item.name || "Baby clothing";
+
+      image.addEventListener("error", function () {
+        image.style.visibility = "hidden";
+      });
+
+      const info = document.createElement("div");
+      info.className = "cart-item-info";
+
+      const name = document.createElement("h3");
+      name.textContent = item.name;
+
+      const size = document.createElement("p");
+      size.textContent = "Size: " + item.size;
+
+      const unitPrice = document.createElement("p");
+      unitPrice.textContent =
+        "Price: " + formatPrice(item.price);
+
+      const quantityBox = document.createElement("div");
+      quantityBox.className = "cart-quantity";
+
+      const decrease = document.createElement("button");
+      decrease.type = "button";
+      decrease.textContent = "−";
+      decrease.dataset.action = "decrease";
+      decrease.dataset.index = index;
+      decrease.setAttribute("aria-label", "Decrease quantity");
+
+      const quantity = document.createElement("span");
+      quantity.textContent = item.quantity;
+
+      const increase = document.createElement("button");
+      increase.type = "button";
+      increase.textContent = "+";
+      increase.dataset.action = "increase";
+      increase.dataset.index = index;
+      increase.setAttribute("aria-label", "Increase quantity");
+
+      quantityBox.appendChild(decrease);
+      quantityBox.appendChild(quantity);
+      quantityBox.appendChild(increase);
+
+      info.appendChild(name);
+      info.appendChild(size);
+      info.appendChild(unitPrice);
+      info.appendChild(quantityBox);
+
+      const actions = document.createElement("div");
+      actions.className = "cart-item-actions";
+
+      const lineTotal = document.createElement("div");
+      lineTotal.className = "cart-line-total";
+      lineTotal.textContent =
+        formatPrice(Number(item.price) * Number(item.quantity));
+
+      const removeButton = document.createElement("button");
+      removeButton.type = "button";
+      removeButton.className = "remove-cart-item";
+      removeButton.textContent = "Remove";
+      removeButton.dataset.action = "remove";
+      removeButton.dataset.index = index;
+
+      actions.appendChild(lineTotal);
+      actions.appendChild(removeButton);
+
+      article.appendChild(image);
+      article.appendChild(info);
+      article.appendChild(actions);
+
+      cartItemsContainer.appendChild(article);
+    });
+  }
+
+  // Handle quantity changes and remove buttons.
+  cartItemsContainer.addEventListener("click", function (event) {
+
+    const button = event.target.closest("button[data-action]");
+
+    if (!button) return;
+
+    const index = Number(button.dataset.index);
+    const action = button.dataset.action;
+
+    const cart = readCart();
+
+    if (!cart[index]) return;
+
+    if (action === "increase") {
+      if (Number(cart[index].quantity) < 10) {
+        cart[index].quantity =
+          Number(cart[index].quantity) + 1;
+      }
+    }
+
+    if (action === "decrease") {
+      if (Number(cart[index].quantity) > 1) {
+        cart[index].quantity =
+          Number(cart[index].quantity) - 1;
+      }
+    }
+
+    if (action === "remove") {
+      cart.splice(index, 1);
+    }
+
+    saveCart(cart);
+    updateCart();
+  });
+
+  // Checkout placeholder.
+  if (checkoutButton) {
+    checkoutButton.addEventListener("click", function () {
+
+      const cart = readCart();
+
+      if (cart.length === 0) {
+        alert("Your shopping cart is empty. Please add a product first.");
+        return;
+      }
+
+      alert(
+        "Your cart is ready! We will build the secure Checkout page in the next stage."
+      );
+    });
+  }
+
+  // Initial cart display.
+  updateCart();
+
+});
