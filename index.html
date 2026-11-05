@@ -4,423 +4,247 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>THREADVERSE LITTLE | Baby Clothing Store</title>
-
-  <meta name="description" content="Discover comfortable and beautiful baby clothes for newborns and infants at THREADVERSE LITTLE.">
-
-  <link rel="stylesheet" href="style.css">
-
+  <title>THREADVERSE LITTLE | Little Clothes. Big Love.</title>
+  <meta name="description" content="Shop soft and comfortable baby clothing at THREADVERSE LITTLE.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <!-- ANNOUNCEMENT BAR -->
   <div class="announcement">
-    Welcome to THREADVERSE LITTLE – Made for Little Moments
+    Welcome to THREADVERSE LITTLE — Little Clothes. Big Love.
   </div>
 
-  <!-- HEADER -->
   <header class="header">
-
-    <a href="index.html" class="logo">
+    <a class="logo" href="index.html">
       THREADVERSE <span>LITTLE</span>
-      <small>Little Clothes. Big Love.</small>
     </a>
 
-    <button class="menu-toggle" id="menuToggle"
-      aria-label="Open navigation" aria-expanded="false">
-      ☰
-    </button>
+    <button class="menu-toggle" id="menuToggle" aria-label="Open menu">☰</button>
 
     <nav class="navigation" id="navigation">
-      <a href="index.html">Home</a>
+      <a href="#home">Home</a>
       <a href="#collections">Collections</a>
-      <a href="#new-arrivals">New Arrivals</a>
+      <a href="#products">Shop</a>
       <a href="#about">Our Story</a>
       <a href="#contact">Contact</a>
     </nav>
 
-    <div class="header-actions">
-      <a href="#new-arrivals" aria-label="Search products">⌕</a>
-      <a href="cart.html" aria-label="Shopping cart">
-        ♡ <span id="cartCount">0</span>
-      </a>
-    </div>
-
+    <a href="#products" class="header-shop">Explore Shop</a>
   </header>
 
-
-  <!-- HERO SECTION -->
   <main>
 
-    <section class="hero">
-
+    <!-- HERO SECTION -->
+    <section class="hero" id="home">
       <div class="hero-content">
-
-        <p class="eyebrow">A WORLD OF LITTLE WONDERS</p>
-
-        <h1>
-          Little Clothes.<br>
-          <span>Big Love.</span>
-        </h1>
-
+        <p class="eyebrow">MADE FOR LITTLE MOMENTS</p>
+        <h1>Little Clothes.<br><span>Big Love.</span></h1>
         <p class="hero-description">
-          Discover adorable, comfortable and thoughtfully
-          selected clothing for your little one's beautiful
-          first year.
+          Discover adorable, comfortable and thoughtfully selected
+          clothing for your little one's earliest adventures.
         </p>
-
-        <div class="hero-buttons">
-          <a href="#collections" class="btn btn-primary">
-            Explore Collection
-          </a>
-
-          <a href="#about" class="btn btn-outline">
-            Discover Our Story
-          </a>
-        </div>
-
-        <div class="hero-note">
-          <span>✿</span>
-          Made for little moments and endless cuddles.
-        </div>
-
+        <a href="#products" class="primary-button">Explore Collection</a>
+        <p class="hero-note">Special little styles for ages 0–12 months</p>
       </div>
 
       <div class="hero-image">
         <img
-          src="assets/banners/hero.jpg"
-          alt="Baby wearing comfortable cotton clothing"
-          onerror="this.style.display='none';this.parentElement.classList.add('image-placeholder')">
-
-        <div class="image-label">
-          <span>THE LITTLE COLLECTION</span>
-          <strong>Comfort in every little moment.</strong>
-        </div>
+          src="https://images.unsplash.com/photo-1766918780914-5df4a5a98c44?auto=format&fit=crop&w=1200&q=85"
+          alt="Baby clothes hanging on a clothing rack">
+        <div class="image-label">A little world of comfort</div>
       </div>
-
     </section>
-
 
     <!-- TRUST STRIP -->
     <section class="trust-strip">
-
-      <div>
-        <span>♡</span>
-        <p>Comfort First</p>
-      </div>
-
-      <div>
-        <span>✿</span>
-        <p>Little Styles</p>
-      </div>
-
-      <div>
-        <span>♧</span>
-        <p>Thoughtful Choices</p>
-      </div>
-
-      <div>
-        <span>♡</span>
-        <p>Made with Love</p>
-      </div>
-
+      <div>♡ Thoughtful Styles</div>
+      <div>✿ Little Comforts</div>
+      <div>☁ Soft Everyday Looks</div>
+      <div>♡ Made for Little Moments</div>
     </section>
 
-
-    <!-- AGE COLLECTIONS -->
+    <!-- COLLECTIONS -->
     <section class="section collections" id="collections">
-
       <div class="section-heading">
         <p class="eyebrow">SHOP BY AGE</p>
-        <h2>Every Little Stage</h2>
-        <p>Find something special for every little milestone.</p>
+        <h2>Made for Every Little Stage</h2>
+        <p>Find lovely styles for your baby's first year.</p>
       </div>
 
       <div class="collection-grid">
 
-        <a href="shop.html?age=0-3" class="collection-card newborn">
-
-          <div class="collection-visual">
-            <img
-              src="assets/banners/newborn.jpg"
-              alt="Newborn baby clothing collection"
-              onerror="this.style.display='none'">
-            <span>01</span>
-          </div>
-
+        <a href="#products" class="collection-card">
+          <img
+            src="https://images.unsplash.com/photo-1622290319146-7b63df48a635?auto=format&fit=crop&w=900&q=85"
+            alt="Newborn baby onesie and clothing">
           <div class="collection-info">
-            <div>
-              <h3>Newborn Collection</h3>
-              <p>0–3 Months</p>
-            </div>
-            <span class="collection-arrow">↗</span>
+            <span>0–3 MONTHS</span>
+            <h3>Newborn Collection</h3>
+            <span class="collection-link">Explore Collection →</span>
           </div>
-
         </a>
 
-
-        <a href="shop.html?age=3-12" class="collection-card infant">
-
-          <div class="collection-visual">
-            <img
-              src="assets/banners/infant.jpg"
-              alt="Infant baby clothing collection"
-              onerror="this.style.display='none'">
-            <span>02</span>
-          </div>
-
+        <a href="#products" class="collection-card">
+          <img
+            src="https://images.unsplash.com/photo-1777397660834-67c6d0eabe15?auto=format&fit=crop&w=900&q=85"
+            alt="Baby clothing collection">
           <div class="collection-info">
-            <div>
-              <h3>Infant Collection</h3>
-              <p>3–12 Months</p>
-            </div>
-            <span class="collection-arrow">↗</span>
+            <span>3–12 MONTHS</span>
+            <h3>Infant Collection</h3>
+            <span class="collection-link">Explore Collection →</span>
           </div>
-
         </a>
 
       </div>
-
     </section>
 
-
-    <!-- NEW ARRIVALS -->
-    <section class="section arrivals" id="new-arrivals">
-
+    <!-- PRODUCTS -->
+    <section class="section products" id="products">
       <div class="section-heading">
-        <p class="eyebrow">FRESHLY PICKED</p>
-        <h2>Little New Arrivals</h2>
-        <p>Beautiful everyday essentials for your little one.</p>
+        <p class="eyebrow">OUR LITTLE PICKS</p>
+        <h2>Lovely Finds for Little Ones</h2>
+        <p>Explore our sample babywear collection.</p>
       </div>
 
       <div class="product-grid">
 
         <article class="product-card">
-
-          <a href="shop.html">
-            <div class="product-image product-one">
-              <img src="assets/products/romper.jpg"
-                alt="Cotton baby romper"
-                onerror="this.style.display='none'">
-              <span class="product-tag">NEW</span>
-            </div>
-          </a>
-
-          <div class="product-info">
-            <p class="product-category">0–3 MONTHS</p>
-            <h3>Little Cotton Romper</h3>
-            <p class="price">₹399</p>
+          <div class="product-image">
+            <img
+              src="https://images.unsplash.com/photo-1622290319146-7b63df48a635?auto=format&fit=crop&w=700&q=85"
+              alt="White baby onesie">
+            <span class="product-tag">NEWBORN</span>
           </div>
-
+          <div class="product-info">
+            <p class="product-category">0–3 Months</p>
+            <h3>Little Comfort Onesie</h3>
+            <p class="product-price">Coming Soon</p>
+          </div>
         </article>
 
-
         <article class="product-card">
-
-          <a href="shop.html">
-            <div class="product-image product-two">
-              <img src="assets/products/set.jpg"
-                alt="Baby clothing set"
-                onerror="this.style.display='none'">
-              <span class="product-tag">POPULAR</span>
-            </div>
-          </a>
-
-          <div class="product-info">
-            <p class="product-category">3–6 MONTHS</p>
-            <h3>Everyday Baby Set</h3>
-            <p class="price">₹499</p>
+          <div class="product-image">
+            <img
+              src="https://images.unsplash.com/photo-1777397660834-67c6d0eabe15?auto=format&fit=crop&w=700&q=85"
+              alt="Baby clothing set">
+            <span class="product-tag">INFANT</span>
           </div>
-
+          <div class="product-info">
+            <p class="product-category">3–12 Months</p>
+            <h3>Everyday Little Set</h3>
+            <p class="product-price">Coming Soon</p>
+          </div>
         </article>
 
-
         <article class="product-card">
-
-          <a href="shop.html">
-            <div class="product-image product-three">
-              <img src="assets/products/nightwear.jpg"
-                alt="Baby nightwear"
-                onerror="this.style.display='none'">
-            </div>
-          </a>
-
-          <div class="product-info">
-            <p class="product-category">6–9 MONTHS</p>
-            <h3>Dreamy Nightwear</h3>
-            <p class="price">₹449</p>
+          <div class="product-image">
+            <img
+              src="https://images.unsplash.com/photo-1766918780914-5df4a5a98c44?auto=format&fit=crop&w=700&q=85"
+              alt="Baby clothes on a rack">
+            <span class="product-tag">NEW ARRIVAL</span>
           </div>
-
-        </article>
-
-
-        <article class="product-card">
-
-          <a href="shop.html">
-            <div class="product-image product-four">
-              <img src="assets/products/outfit.jpg"
-                alt="Baby outfit"
-                onerror="this.style.display='none'">
-            </div>
-          </a>
-
           <div class="product-info">
-            <p class="product-category">9–12 MONTHS</p>
-            <h3>Little Sunshine Outfit</h3>
-            <p class="price">₹599</p>
+            <p class="product-category">0–12 Months</p>
+            <h3>Little Wardrobe Picks</h3>
+            <p class="product-price">Coming Soon</p>
           </div>
-
         </article>
 
       </div>
-
-      <div class="center-button">
-        <a href="shop.html" class="btn btn-primary">
-          View All Products
-        </a>
-      </div>
-
     </section>
-
 
     <!-- BRAND STORY -->
     <section class="story-section" id="about">
-
       <div class="story-image">
-        <img src="assets/banners/story.jpg"
-          alt="Beautiful baby clothing"
-          onerror="this.style.display='none'">
+        <img
+          src="https://images.unsplash.com/photo-1622290319146-7b63df48a635?auto=format&fit=crop&w=1000&q=85"
+          alt="Soft baby clothing arranged for a newborn">
       </div>
 
       <div class="story-content">
-
-        <p class="eyebrow">OUR LITTLE WORLD</p>
-
-        <h2>Because Every Little Moment Matters.</h2>
-
+        <p class="eyebrow">A LITTLE STORY</p>
+        <h2>For the tiniest people with the biggest place in our hearts.</h2>
         <p>
-          At THREADVERSE LITTLE, we believe that the smallest
-          moments create the biggest memories.
+          At THREADVERSE LITTLE, we believe that every little moment
+          deserves something special. Our store is being created to
+          bring parents a lovely selection of baby clothing for the
+          precious first year of life.
         </p>
-
-        <p>
-          Our goal is to bring parents a thoughtfully selected
-          collection of adorable baby clothing for life's
-          sweetest first year.
-        </p>
-
-        <a href="about.html" class="text-link">
-          Read Our Story ↗
-        </a>
-
+        <a href="#products" class="text-link">Discover Our Collection →</a>
       </div>
-
     </section>
 
-
-    <!-- WHY CHOOSE US -->
-    <section class="section benefits">
-
-      <div class="section-heading">
-        <p class="eyebrow">THE LITTLE DIFFERENCE</p>
-        <h2>Made for Little Comforts</h2>
+    <!-- BENEFITS -->
+    <section class="benefits">
+      <div>
+        <span>♡</span>
+        <h3>Little Details</h3>
+        <p>Thoughtfully selected styles.</p>
       </div>
-
-      <div class="benefit-grid">
-
-        <div class="benefit">
-          <span>♡</span>
-          <h3>Comfort Focused</h3>
-          <p>Thoughtfully selected styles for everyday wear.</p>
-        </div>
-
-        <div class="benefit">
-          <span>✿</span>
-          <h3>Adorable Designs</h3>
-          <p>Little outfits for life's sweetest memories.</p>
-        </div>
-
-        <div class="benefit">
-          <span>♧</span>
-          <h3>Easy Shopping</h3>
-          <p>Find clothing by age, style and size.</p>
-        </div>
-
+      <div>
+        <span>☁</span>
+        <h3>Everyday Comfort</h3>
+        <p>Comfort comes first.</p>
       </div>
-
+      <div>
+        <span>✿</span>
+        <h3>Made for Memories</h3>
+        <p>Celebrate every little moment.</p>
+      </div>
     </section>
-
 
     <!-- NEWSLETTER -->
     <section class="newsletter">
-
-      <p class="eyebrow">A LITTLE LOVE IN YOUR INBOX</p>
-
-      <h2>Stay Close to Our Little World.</h2>
-
-      <p>Discover new collections and special offers.</p>
+      <p class="eyebrow">STAY CLOSE</p>
+      <h2>Little updates, lovely surprises.</h2>
+      <p>Join us to hear about our upcoming collection.</p>
 
       <form id="newsletterForm">
-        <input
-          type="email"
-          id="newsletterEmail"
-          placeholder="Enter your email address"
-          required>
-
+        <input type="email" id="emailInput"
+          placeholder="Enter your email address" required>
         <button type="submit">Join Us</button>
       </form>
 
-      <p id="newsletterMessage" class="form-message"
-        aria-live="polite"></p>
-
+      <p id="newsletterMessage" class="newsletter-message"></p>
     </section>
 
   </main>
 
-
   <!-- FOOTER -->
   <footer class="footer" id="contact">
-
     <div class="footer-main">
-
-      <div class="footer-brand">
-        <h2>THREADVERSE <span>LITTLE</span></h2>
+      <div>
+        <a class="logo footer-logo" href="#home">
+          THREADVERSE <span>LITTLE</span>
+        </a>
         <p>Little Clothes. Big Love.</p>
-        <p>A little world made for your little one.</p>
       </div>
 
-      <div class="footer-links">
+      <div>
         <h3>Explore</h3>
-        <a href="index.html">Home</a>
-        <a href="shop.html">Shop All</a>
+        <a href="#home">Home</a>
         <a href="#collections">Collections</a>
-        <a href="about.html">About Us</a>
+        <a href="#products">Shop</a>
+        <a href="#about">Our Story</a>
       </div>
 
-      <div class="footer-links">
-        <h3>Customer Care</h3>
-        <a href="contact.html">Contact Us</a>
-        <a href="shipping.html">Shipping Policy</a>
-        <a href="returns.html">Returns & Refunds</a>
-        <a href="privacy.html">Privacy Policy</a>
+      <div>
+        <h3>Information</h3>
+        <a href="#contact">Contact Us</a>
+        <a href="#contact">Shipping Information</a>
+        <a href="#contact">Privacy Policy</a>
       </div>
-
     </div>
 
     <div class="footer-bottom">
-      <p>© <span id="year"></span> THREADVERSE LITTLE. All rights reserved.</p>
-      <p>Made with ♡ for little moments.</p>
+      © <span id="currentYear"></span> THREADVERSE LITTLE. All rights reserved.
     </div>
-
   </footer>
 
-
   <script src="script.js"></script>
-
 </body>
 </html>
