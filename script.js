@@ -1,112 +1,41 @@
 
-/* =================================
-   THREADVERSE LITTLE
-   JAVASCRIPT
-================================= */
-
-// MOBILE NAVIGATION
-
+// Mobile navigation
 const menuToggle = document.getElementById("menuToggle");
 const navigation = document.getElementById("navigation");
 
 if (menuToggle && navigation) {
-
   menuToggle.addEventListener("click", function () {
-
-    const isOpen = navigation.classList.toggle("active");
-
-    menuToggle.setAttribute("aria-expanded", isOpen);
-
-    menuToggle.innerHTML = isOpen ? "✕" : "☰";
-
+    navigation.classList.toggle("active");
   });
 
-  // Close menu after selecting a link
-
-  navigation.querySelectorAll("a").forEach(function(link) {
-
-    link.addEventListener("click", function() {
-
+  navigation.querySelectorAll("a").forEach(function (link) {
+    link.addEventListener("click", function () {
       navigation.classList.remove("active");
-
-      menuToggle.setAttribute("aria-expanded", "false");
-
-      menuToggle.innerHTML = "☰";
-
     });
-
   });
-
 }
 
+// Automatic copyright year
+const currentYear = document.getElementById("currentYear");
 
-// AUTOMATIC COPYRIGHT YEAR
-
-const yearElement = document.getElementById("year");
-
-if (yearElement) {
-  yearElement.textContent = new Date().getFullYear();
+if (currentYear) {
+  currentYear.textContent = new Date().getFullYear();
 }
 
-
-// CART COUNT DISPLAY
-
-function updateCartCount() {
-
-  const cartCountElement = document.getElementById("cartCount");
-
-  if (!cartCountElement) return;
-
-  try {
-
-    const cart = JSON.parse(
-      localStorage.getItem("threadverseLittleCart") || "[]"
-    );
-
-    const totalItems = cart.reduce(function(total, item) {
-      return total + Number(item.quantity || 0);
-    }, 0);
-
-    cartCountElement.textContent = totalItems;
-
-  } catch (error) {
-
-    cartCountElement.textContent = "0";
-
-  }
-
-}
-
-updateCartCount();
-
-
-// NEWSLETTER FORM - TEMPORARY FRONTEND HANDLER
-
+// Newsletter demo
 const newsletterForm = document.getElementById("newsletterForm");
+const emailInput = document.getElementById("emailInput");
+const newsletterMessage = document.getElementById("newsletterMessage");
 
 if (newsletterForm) {
-
-  newsletterForm.addEventListener("submit", function(event) {
-
+  newsletterForm.addEventListener("submit", function (event) {
     event.preventDefault();
 
-    const email = document.getElementById("newsletterEmail");
+    if (emailInput.value.trim() !== "") {
+      newsletterMessage.textContent =
+        "Thank you for your interest in THREADVERSE LITTLE!";
 
-    const message = document.getElementById("newsletterMessage");
-
-    if (!email.value.trim() || !email.checkValidity()) {
-
-      message.textContent = "Please enter a valid email address.";
-
-      return;
-
+      emailInput.value = "";
     }
-
-    message.textContent =
-      "Thank you for your interest! Newsletter registration will be available soon.";
-
-    newsletterForm.reset();
-
   });
-
 }
